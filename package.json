@@ -1,0 +1,22 @@
+{
+  "name": "domoticajsyarduino",
+  "version": "0.0.1",
+  "description": "manipular arduino mediante javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "domotica",
+    "javascript",
+    "arduino"
+  ],
+  "author": "ArduinoWeb",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "johnny-five": "^0.11.3-beta.1",
+    "serialport": "^4.0.7",
+    "socket.io": "^2.0.3"
+  }
+}
