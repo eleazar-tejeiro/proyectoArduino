@@ -1,6 +1,7 @@
-<html>
+<!DOCTYPE html>
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <title>Arduino Web</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style>
         .btn {
@@ -15,25 +16,29 @@
     <div class="container theme-showcase" role="main">
         <div class="jumbotron">
             <h2>Firmata y Arduino</h1>
-                <p>Con este ejemplo vamos a controlar un LED RGB a través de una web. Cuando pulsemos uno de los botones el LED cambiara al color que indique el botón. También podemos controlar enceder o apagar el LED o que parpadee</p>
+                <p>Con este ejemplo vamos a controlar una casa.</p>
         </div>
         <div class="row">
-            <div class="col-md-3 col-md-offset-3">
-                <p> <button id="b_azul" type="button" class="btn btn-lg btn-primary">Azul</button>
-                    <p> <button id="b_verde" type="button" class="btn btn-lg btn-success">Verde</button>
-                        <p> <button id="b_rojo" type="button" class="btn btn-lg btn-danger">Amarillo</button>
+            <div class="col-md-4 col-md-offset-4">
+                <p> <button id="b_aireuno" type="button" class="btn btn-lg btn-default">Aire 1</button>
+                    <p> <button id="b_airedos" type="button" class="btn btn-lg btn-default">Aire 2</button>
+                        <p> <button id="b_luzsala" type="button" class="btn btn-lg btn-default">Luz Sala</button>
+                            <p> <button id="b_on" type="button" class="btn btn-lg btn-default">Encender Todo</button>
             </div>
-            <div class="col-md-3">
-                <p> <button id="b_stop" type="button" class="btn btn-lg btn-default">Blink</button>
-                    <p> <button id="b_off" type="button" class="btn btn-lg btn-default">Led OFF</button>
-                        <p> <button id="b_on" type="button" class="btn btn-lg btn-default">Led ON</button>
+            <div class="col-md-4">
+                <p> <button id="b_luzcocina" type="button" class="btn btn-lg btn-default">Luz Cocina</button>
+                    <p> <button id="b_luzpatio" type="button" class="btn btn-lg btn-default">Luz Patio</button>
+                        <p> <button id="b_ventilador" type="button" class="btn btn-lg btn-default">Ventilador</button>
+                            <p> <button id="b_off" type="button" class="btn btn-lg btn-default">Apagar Todo</button>
             </div>
         </div>
         <div class="row">
             <div class="well">
-                <p> Ejemplo realizado por: <a href="mailto:acontreras@programarfacil.com">Alfonso Contreras</a>
-                    <br> <a href="wwww.programarfacil.com">www.programarfacil.com</a>
-                    <br> <a href="https://programarfacil.com/blog/controla-tu-arduino-con-una-web-con-firmata-y-javascript">Entrada original</a>
+                <p> Integrantes del proyecto: </p>
+                <br> <a href="mailto:eltejeiro@gmail.com">Uriel Tejeiro</a>
+                <br><a href="mailto:marco.parde@gmail.com">Marcos Parada</a>
+                <br><a href="mailto:raptoralfa57@gmail.com">Raul Uchazara</a>
+                    <br> <a href="http://wwww.utepsa.edu">www.utepsa.edu</a>
             </div>
         </div>
     </div>
@@ -43,36 +48,43 @@
     <script>
         var socket = io();
 
-        function cambiaAzul() {
-            socket.emit('blue');
+        function onAireUno() {
+            socket.emit('aireuno');
         }
 
-        function cambiaVerde() {
-            socket.emit('green');
+        function onAireDos() {
+            socket.emit('airedos');
         }
 
-        function cambiaRojo() {
-            socket.emit('yellow');
+        function onLuzSala() {
+            socket.emit('luzsala');
         }
 
-        function stopBlink() {
-            socket.emit('blink');
+        function onEverything() {
+            socket.emit('onall');
         }
 
-        function offLed() {
-            socket.emit('off');
+        function offEverything() {
+            socket.emit('offall');
         }
 
-        function onLed() {
-            socket.emit('on');
+        function onCocina() {
+            socket.emit('cocina');
         }
-        document.getElementById('b_azul').onclick = cambiaAzul;
-        document.getElementById('b_verde').onclick = cambiaVerde;
-        document.getElementById('b_rojo').onclick = cambiaRojo;
-        document.getElementById('b_stop').onclick = stopBlink;
-        document.getElementById('b_off').onclick = offLed;
-        document.getElementById('b_on').onclick = onLed;
+        function onPatio() {
+            socket.emit('patio');
+        }
+        function onVentilador() {
+            socket.emit('ventiladoron');
+        }
+        document.getElementById('b_aireuno').onclick = onAireUno;
+        document.getElementById('b_airedos').onclick = onAireDos;
+        document.getElementById('b_luzsala').onclick = onLuzSala;
+        document.getElementById('b_on').onclick = onEverything;
+        document.getElementById('b_off').onclick = offEverything;
+        document.getElementById('b_luzcocina').onclick = onCocina;
+        document.getElementById('b_luzpatio').onclick = onPatio;
+        document.getElementById('b_ventilador').onclick = onVentilador;
     </script>
 </body>
-
 </html>
